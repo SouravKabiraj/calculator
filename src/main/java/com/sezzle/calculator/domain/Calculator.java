@@ -55,8 +55,12 @@ public class Calculator {
                     }
             }
         }
-        List<Number> operands = Arrays.asList(input.split("[-+*/]")).stream().map(operand -> new Number(operand)).collect(Collectors.toList());
-        bodmasSequence.stream().forEach(op -> {
+        List<Number> operands = Arrays.stream(input.split("[-+*/]")).map(Number::new).collect(Collectors.toList());
+        return bodmasExecutor(ops, operands);
+    }
+
+    private String bodmasExecutor(List<OperationSymbol> ops, List<Number> operands) {
+        bodmasSequence.forEach(op -> {
             for (int i = 0; i < ops.size(); i++) {
                 if (op == ops.get(i)) {
                     Number result = symbolOperationMap.get(op).execute(operands.get(i), operands.get(i + 1));
