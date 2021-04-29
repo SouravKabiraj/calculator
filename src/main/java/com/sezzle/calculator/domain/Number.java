@@ -21,6 +21,12 @@ public class Number {
         return numberAsString;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        Number otherNumber = (Number) obj;
+        return otherNumber.toString().equals(toString());
+    }
+
     public double getDouble() {
         return Double.valueOf(number);
     }
